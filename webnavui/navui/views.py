@@ -19,6 +19,11 @@ def index(req):
 @csrf_exempt
 def navclick(req):
     l = Location.objects.get(id=int(req.POST['lid']))
+
+    if l.active:
+        print("Already active %d" % l.relay_no)
+        return JsonResponse({ 'ok': False, 'error': "Already lit" })
+
     na = NavigationAction(location=l)
     na.save()
     l.active = True
@@ -39,4 +44,7 @@ def location_display_expiry_thread(l):
         time.sleep(l.display_seconds)
     finally:
         l.turn_off_relay()
+        l.refresh_from_db()
+        l.active = False
+        l.save()
 

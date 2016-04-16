@@ -1,4 +1,5 @@
 {% extends 'navui/base.html' %}
+{% load staticfiles %}
 
 {% block title %}Welcome{% endblock %}
 
@@ -12,6 +13,7 @@
         <h4 class="modal-title">The path is lit</h4>
       </div>
       <div class="modal-body">
+        <p style="text-align: center"><img src="{% static 'navui/dots.gif' %}"></p>
         <p>Your path is now lit&hellip;</p>
       </div>
       <div class="modal-footer">
@@ -40,7 +42,10 @@ function navClick(lid) {
     'method': 'POST',
     'data': { 'lid': lid },
   }).done(function(r) {
-    $('#navLitModal').modal({});
+    if (r.ok)
+      $('#navLitModal').modal({});
+    else
+      alert("Please wait before trying again");
   });
 }
 
