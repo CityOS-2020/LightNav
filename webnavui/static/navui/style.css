@@ -1,3 +1,36 @@
 body {
-	background: red;
+}
+
+#topbanner {
+    background-image: url("banner0.jpg");
+    background-position: center center;
+    height: 120px;
+    line-height: 120px;
+    width: 100%;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    padding: 20px;
+    vertical-align: bottom;
+    font-weight: bold;
+    font-size: 60px;
+    color: white;
+    text-shadow: 0 0 20px gray;
+}
+
+#navarea {
+    text-align: center;
+}
+
+#navarea h2 {
+    border-bottom: solid 1px silver;
+}
+
+.navbtn {
+    width: 200px;
+    height: 70px;
+    word-wrap: break-word;
+    font-size: 20px;
+    margin: 10px;
 }
