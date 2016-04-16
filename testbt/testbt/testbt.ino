@@ -1,5 +1,3 @@
-String message; //string that stores the incoming message
-
 void setup()
 {
   Serial.begin(9600); //set baud rate
