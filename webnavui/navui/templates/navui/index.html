@@ -21,6 +21,7 @@ function navClick(lid) {
   $.ajax({
     'url': '/api/navclick',
     'method': 'POST',
+    'data': { 'lid': lid },
   }).done(function(r) {
     alert('ok');
   });
