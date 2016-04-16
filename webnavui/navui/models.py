@@ -37,6 +37,8 @@ class Location(models.Model):
     order = models.IntegerField(default=0)
     display_seconds = models.IntegerField(default=30)
     active = models.BooleanField(default=False)
+    btn_class = models.CharField(max_length=20, default='info')
+    btn_icon = models.CharField(max_length=20, default='', blank=True)
 
     def __str__(self):
         return self.name
