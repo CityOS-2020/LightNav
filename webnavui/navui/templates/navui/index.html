@@ -4,6 +4,23 @@
 
 {% block content %}
 
+<div id="navLitModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">The path is lit</h4>
+      </div>
+      <div class="modal-body">
+        <p>Your path is now lit&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div id="navarea">
 
   {% for lt in ltypes %}
@@ -23,7 +40,7 @@ function navClick(lid) {
     'method': 'POST',
     'data': { 'lid': lid },
   }).done(function(r) {
-    alert('ok');
+    $('#navLitModal').modal({});
   });
 }
 
