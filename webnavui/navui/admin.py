@@ -5,8 +5,8 @@ from .models import *
 
 class LocationAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'location_type', 'relay_no')
-    list_filter = ('location_type',)
+    list_display = ('name', 'location_type', 'relay_no', 'active')
+    list_filter = ('location_type', 'active')
     search_fields = ('name', 'relay_no')
 
 

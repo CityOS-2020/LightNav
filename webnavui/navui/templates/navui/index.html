@@ -28,7 +28,7 @@
   {% for lt in ltypes %}
   <h2>{{ lt.name }}</h2>
   {% for l in lt.locations %}
-  <button class="btn btn-info navbtn" onclick="navClick({{ l.id }})">{{ l.name }}</button>
+  <button class="btn btn-{{ l.btn_class }} navbtn" onclick="navClick({{ l.id }})">{% if l.btn_icon %}<span class="glyphicon glyphicon-{{ l.btn_icon }}"></span> {% endif %}{{ l.name }}</button>
   {% endfor %}
   {% endfor %}
 

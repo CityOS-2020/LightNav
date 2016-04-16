@@ -22,7 +22,7 @@ def navclick(req):
 
     if l.active:
         print("Already active %d" % l.relay_no)
-        return JsonResponse({ 'ok': False, 'error': "Already lit" })
+        return JsonResponse({ 'ok': True, 'error': "Already lit" })
 
     na = NavigationAction(location=l)
     na.save()

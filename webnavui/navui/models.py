@@ -32,6 +32,7 @@ class Location(models.Model):
     location_type = models.ForeignKey(LocationType)
     name = models.CharField(max_length=15)
     relay_no = models.IntegerField(default=4)
+    relay_no_2 = models.IntegerField(default=0)
     map_url = models.CharField(max_length=100, blank=True, null=True)
     enabled = models.BooleanField(default=True)
     order = models.IntegerField(default=0)
