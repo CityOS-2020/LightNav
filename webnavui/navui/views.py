@@ -2,6 +2,8 @@ import json
 import time
 import threading
 
+import qrcode
+
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -35,7 +37,15 @@ def navclick(req):
     t.daemon = True
     t.start()
 
-    return JsonResponse({ 'ok': True, 'lid': l.id, 'na': na.id })
+    resp = { 'ok': True, 'lid': l.id, 'na': na.id, 'img': None }
+
+    print(l.map_url)
+    if l.map_url:
+        img = qrcode.make(l.map_url)
+        img.save('/home/pi/LightNav/webnavui/static/navui/%d.png' % l.id)
+        resp['img'] = '%d.png' % l.id
+
+    return JsonResponse(resp)
 
 
 def location_display_expiry_thread(l):
