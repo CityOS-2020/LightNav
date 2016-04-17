@@ -1,12 +1,14 @@
 import json
 import time
 import threading
+import datetime
 
 import qrcode
 
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Min, Max, Avg
 
 from .models import LocationType, Location, NavigationAction
 
@@ -48,6 +50,14 @@ def navclick(req):
     return JsonResponse(resp)
 
 
+def usage_graph(req):
+    ctx = {}
+    ltid = int(req.GET['id'])
+    evlist = [ date_clamp(x.ctime) for x in NavigationAction.objects.filter(location__location_type_id = ltid) ]
+    ctx['evlist'] = evlist
+    return render(req, 'navui/usage_graph.html', ctx)
+
+
 def location_display_expiry_thread(l):
     print("Countdown of %d seconds to turn off relay %d" % (l.display_seconds, l.relay_no))
     try:
@@ -57,4 +67,11 @@ def location_display_expiry_thread(l):
         l.refresh_from_db()
         l.active = False
         l.save()
+
+
+def unix_d(d):
+    return time.mktime(d.timetuple())
+
+def date_clamp(d):
+    return -(unix_d(datetime.datetime.now()) - unix_d(d)) / 3600 
 
